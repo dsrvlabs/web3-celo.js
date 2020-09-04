@@ -159,7 +159,7 @@ var _txInputFormatter = function (options) {
         options.gas = options.gas || options.gasLimit;
     }
 
-    ['gasPrice', 'gas', 'value', 'nonce'].filter(function (key) {
+    ['gasPrice', 'gas', 'feeCurrency', 'gatewayFeeRecipient', 'gatewayFee', 'value', 'nonce'].filter(function (key) {
         return options[key] !== undefined;
     }).forEach(function (key) {
         options[key] = utils.numberToHex(options[key]);
@@ -240,6 +240,9 @@ var outputTransactionFormatter = function (tx) {
     tx.nonce = utils.hexToNumber(tx.nonce);
     tx.gas = utils.hexToNumber(tx.gas);
     tx.gasPrice = outputBigNumberFormatter(tx.gasPrice);
+    tx.feeCurrency = outputBigNumberFormatter(tx.feeCurrency);
+    tx.gatewayFeeRecipient = outputBigNumberFormatter(tx.gatewayFeeRecipient);
+    tx.gatewayFee = utils.hexToNumber(tx.gatewayFee);
     tx.value = outputBigNumberFormatter(tx.value);
 
     if (tx.to && utils.isAddress(tx.to)) { // tx.to could be `0x0` or `null` while contract creation

@@ -125,6 +125,9 @@ export interface Transaction {
     value: string;
     gasPrice: string;
     gas: number;
+    feeCurrency: string;
+    gatewayFeeRecipient: string;
+    gatewayFee: number;
     input: string;
 }
 
@@ -134,6 +137,9 @@ export interface TransactionConfig {
     value?: number | string | BN;
     gas?: number | string;
     gasPrice?: number | string | BN;
+    feeCurrency?:string;
+    gatewayFeeRecipient?:string;
+    gatewayFee?:number;
     data?: string;
     nonce?: number;
     chainId?: number;
@@ -178,6 +184,9 @@ export interface RLPEncodedTransaction {
         nonce: string;
         gasPrice: string;
         gas: string;
+        feeCurrency: string;
+        gatewayFeeRecipient: string;
+        gatewayFee: string;
         to: string;
         value: string;
         input: string;
